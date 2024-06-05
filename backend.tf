@@ -4,7 +4,6 @@ terraform {
     storage_account_name = "sacpcterraformbackend"
     container_name       = "terraform"
     key                  = "powerpipe_demo.tfstate"
-    use_oidc             = true
   }
 }
 
