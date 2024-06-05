@@ -78,6 +78,25 @@ resource "azurerm_network_security_rule" "network_security_rule_https" {
   network_security_group_name = azurerm_network_security_group.network_security_group.name
 }
 
+resource "azurerm_network_security_rule" "network_security_rule_ssh" {
+  name                        = "allowSSH"
+  priority                    = 102
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "22"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.resource_group.name
+  network_security_group_name = azurerm_network_security_group.network_security_group.name
+}
+
+resource "azurerm_subnet_network_security_group_association" "subnet_network_security_group_association" {
+  subnet_id                 = azurerm_subnet.subnet.id
+  network_security_group_id = azurerm_network_security_group.network_security_group.id
+}
+
 resource "azurerm_linux_virtual_machine" "linux_virtual_machine" {
   name                            = module.naming.virtual_machine.name
   resource_group_name             = azurerm_resource_group.resource_group.name
