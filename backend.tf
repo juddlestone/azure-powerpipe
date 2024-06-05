@@ -4,6 +4,7 @@ terraform {
     storage_account_name  = "sacpcterraformbackend"
     container_name        = "tfstate"
     key                   = "powerpipe_demo.tfstate"
+    use_azuread_auth      = true
   }
 }
 
