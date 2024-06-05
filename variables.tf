@@ -12,5 +12,5 @@ variable "name" {
 
 variable "admin_password" {
   type        = string
-  description = "The password for the virtual machine."  
+  description = "The password for the virtual machine."
 }
