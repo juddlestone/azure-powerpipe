@@ -19,7 +19,7 @@ resource "azurerm_virtual_network" "virtual_network" {
 resource "azurerm_subnet" "subnet" {
   name                 = join("-", [module.naming.subnet.name, "one"])
   resource_group_name  = azurerm_resource_group.resource_group.name
-  virtual_network_name = azurerm_virtual_network.example.name
+  virtual_network_name = azurerm_virtual_network.virtual_network.name
   address_prefixes     = ["10.0.2.0/24"]
 }
 
@@ -53,7 +53,7 @@ resource "azurerm_linux_virtual_machine" "linux_virtual_machine" {
   admin_password                  = var.admin_password
   disable_password_authentication = false
   network_interface_ids = [
-    azurerm_network_interface.example.id,
+    azurerm_network_interface.network_interface.id,
   ]
 
   os_disk {
